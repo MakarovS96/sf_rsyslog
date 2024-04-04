@@ -1,0 +1,20 @@
+version: '3'
+services:
+  server1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./rsyslog/host/:/etc/rsyslog.d/
+    privileged: true
+    hostname: server1
+
+  server2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./rsyslog/server/:/etc/rsyslog.d/
+    ports:
+      - 127.0.0.1:8514:8514
+    hostname: server2
